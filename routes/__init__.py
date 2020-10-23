@@ -3,3 +3,4 @@ routes = Blueprint('routes', __name__)
 
 # Import routes AFTER blueprint definition
 from .index import *
+from .weather import *
