@@ -20,7 +20,7 @@
 
 > Provide a view which renders a bar chart for the requested data ✅ (API responds with image based graph in response data instead of rendering a view)
 
-> Deploy it somewhere ✅ Deployed to AWS EC2 - use http://13.244.62.50:5000/weather as endpoint
+> Deploy it somewhere ✅ Deployed to AWS EC2 - use http://13.244.62.50:5000/ as URL
 
 ## Graph Readability
 
