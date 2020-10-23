@@ -57,7 +57,6 @@ def construct_weather(city, weather_list):
     # Generate humidty graph with strings using Google Chart Image API
     weather_list_len = len(weather_list)    
     chart_width = str(int(weather_list_len * 20.5 + 20))
-    print(humidity_list_string)
     graph_url = ("https://chart.googleapis.com/chart?chs=" 
         # + chart_width
         + "820x300&cht=bvo&chd=t:" 

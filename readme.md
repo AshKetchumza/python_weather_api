@@ -20,7 +20,7 @@
 
 > Provide a view which renders a bar chart for the requested data ✅ (API responds with image based graph in response data instead of rendering a view)
 
-> Deploy it somewhere
+> Deploy it somewhere ✅ Deployed to AWS EC2 - use http://13.244.62.50:5000/weather as endpoint
 
 ## Graph Readability
 
@@ -28,7 +28,7 @@
 
 > The x axis can be read by viewing the number as a time i.e 03 = 03:00 (3am), 12 = 12:00 (12pm), 00 = 00:00 (12am)
 
-> The y axis has a range of 0 to 100, where 10 for temperatures are in celcius and 10 for humidity is a percentage
+> The y axis has a range of 0 to 100, where temperatures are in celcius and humidity is a percentage
 
 ## Run Locally (Requires Python 3.*)
 
