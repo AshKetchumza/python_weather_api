@@ -4,10 +4,6 @@ import json
 
 from app import app
 
-# Test request data
-headers = {"content-type": "application/json"}          
-data_json = json.dumps({'city': 'Cape Town', 'period': 1}) 
-
 class UnitTests(unittest.TestCase):
 
 # Setup and teardown
@@ -36,54 +32,23 @@ class UnitTests(unittest.TestCase):
     # Test weather 200
     def test_weather_200(self):
         print("----".join((" ","Test weather 200 success"," ")))
-        data_json = json.dumps({'city': 'Cape Town', 'period': 1})
-        resp = self.app.post('/weather', data=data_json, headers=headers)
+        resp = self.app.get('/weather?city=Cape Town&period=1')
         self.assertEqual(resp.status_code, 200)
 
-    # Test weather 406 period out of range
-    def test_weather_406_range(self):
-        print("----".join((" ","Test weather 406 period out of range"," ")))
-        data_json = json.dumps({'city': 'Cape Town', 'period': 6})
-        resp = self.app.post('/weather', data=data_json, headers=headers)
-        self.assertEqual(resp.status_code, 406)
+    # Test weather 400 invalid period type
+    def test_weather_400_invalid_period(self):
+        print("----".join((" ","Test weather 400 invalid period type"," ")))
+        resp = self.app.get('/weather?city=Cape Town&period=1.5')
+        self.assertEqual(resp.status_code, 400)
 
-    # Test weather 406 period of incorrect type
-    def test_weather_406_period_type(self):
-        print("----".join((" ","Test weather 406 period of incorrect type"," ")))
-        data_json = json.dumps({'city': 'Cape Town', 'period': 2.5})
-        resp = self.app.post('/weather', data=data_json, headers=headers)
-        self.assertEqual(resp.status_code, 406)
+    # Test weather 400 missing city arg
+    def test_weather_400_missing_city(self):
+        print("----".join((" ","Test weather 400 missing city arg"," ")))
+        resp = self.app.get('/weather?period=1')
+        self.assertEqual(resp.status_code, 400)
 
-    # Test weather 406 city of incorrect type
-    def test_weather_406_city_type(self):
-        print("----".join((" ","Test weather 406 city of incorrect type"," ")))
-        data_json = json.dumps({'city': 1, 'period': 1})
-        resp = self.app.post('/weather', data=data_json, headers=headers)
-        self.assertEqual(resp.status_code, 406)
-
-    # Test weather 404 city not found
+    # Test weather 404
     def test_weather_404(self):
         print("----".join((" ","Test weather 404 city not found"," ")))
-        data_json = json.dumps({'city': 'null', 'period': 1})
-        resp = self.app.post('/weather', data=data_json, headers=headers)
-        self.assertEqual(resp.status_code, 404)
-
-    # Test weather 400 missing period param
-    def test_weather_400_period(self):
-        print("----".join((" ","Test weather 400 missing period param"," ")))
-        data_json = json.dumps({'city': 'Cape Town'})
-        resp = self.app.post('/weather', data=data_json, headers=headers)
-        self.assertEqual(resp.status_code, 400)
-
-    # Test weather 400 missing city param
-    def test_weather_400_city(self):
-        print("----".join((" ","Test weather 400 missing city param"," ")))
-        data_json = json.dumps({'period': 1})
-        resp = self.app.post('/weather', data=data_json, headers=headers)
-        self.assertEqual(resp.status_code, 400)
-
-    # Test weather 400 missing all params
-    def test_weather_400_all(self):
-        print("----".join((" ","Test weather 400 missing all params"," ")))        
-        resp = self.app.post('/weather', headers=headers)
-        self.assertEqual(resp.status_code, 400)
+        resp = self.app.get('/weather?city=faketown&period=1')
+        self.assertEqual(resp.status_code, 404)   

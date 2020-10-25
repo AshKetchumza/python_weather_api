@@ -20,7 +20,7 @@
 
 > Provide a view which renders a bar chart for the requested data ✅ (API responds with image based graph in response data instead of rendering a view)
 
-> Deploy it somewhere ✅ Deployed to AWS EC2 - use http://13.244.62.50:5000/ as URL
+> Deploy it somewhere ✅ Deployed to AWS EC2 - use http://13.244.62.50:5000/ as URL e.g http://localhost:5000/weather?city=Cape%20Town&period=5
 
 ## Graph Readability
 
@@ -29,6 +29,8 @@
 > The x axis can be read by viewing the number as a time i.e 03 = 03:00 (3am), 12 = 12:00 (12pm), 00 = 00:00 (12am)
 
 > The y axis has a range of 0 to 100, where temperatures are in celcius and humidity is a percentage
+
+> Light blue for humidity, red for max temp and orange for min temp
 
 ## Run Locally (Requires Python 3.*)
 
@@ -45,29 +47,21 @@ python app.py
 
 ## Endpoints
 
-* POST    /weather
+* GET     /weather
 * GET     /
 
-> POST method requires city and period parameters
+> GET /weather endpoint requires city and period parameters
 
-> city parameter accepts only strings
+> period parameter accepts only integers, any values below 1 or over 5 will result in a 5 day query
 
-> period parameter accepts values from 1 to 5, accepts only integers
-
-> Example valid request body
+> Example valid request in browser
 ``` bash
-{
-    "city": "Cape Town",
-    "period": 5
-}
+http://localhost:5000/weather?city=Cape Town&period=1
 ```
 
-> Example invalid request body
+> Example invalid request in browser
 ``` bash
-{
-    "city": ["Cape Town"],
-    "period": 5.0
-}
+http://localhost:5000/weather?city=Cape Town&period=1.5
 ```
 
 ## Unit Tests
