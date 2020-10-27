@@ -4,8 +4,9 @@ from controllers.weather import construct_weather
 import requests
 import json
 
-# OpenWeatherMap API key (only stored here for demo purposes)
-api_key = "7b0a0bd6f6d765af9fd90160feb7f3ea"
+# OpenWeatherMap API key goes here
+# Can be acquired here - https://openweathermap.org/api
+api_key = ""
 
 # Main weather endpoint
 @routes.route("/weather", methods=['GET'])
